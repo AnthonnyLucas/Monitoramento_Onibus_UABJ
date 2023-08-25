@@ -96,7 +96,13 @@
         <a href="{{url_for('rotas')}}">Rotas</a>
         <a href="{{url_for('logout')}}">Sair</a>
     </div>
-    <div class="content">
+    {% extends 'base.html' %} {% block header %}
+    <h1>{% block title %}Register{% endblock %}</h1>
+    
+    {% endblock %} {% block content %}
+    
+    
+    <h1>    <div class="content">
         <h1>Informações de Rotas</h1>
         <a href="{{url_for('logout')}}">Sair</a>
         <div class="carousel">
@@ -134,7 +140,10 @@
         <div class="path">
             <div class="path-inner"></div>
         </div>
-    </div>
+    </div></h1>
+    
+    
+    {% endblock %}
     <script>
         const carousel = document.querySelector('.carousel');
         const items = document.querySelectorAll('.carousel-item');

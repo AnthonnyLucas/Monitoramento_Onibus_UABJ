@@ -83,99 +83,109 @@
         <a href="{{ url_for('rotas') }}">Rotas</a>
         <a href="{{ url_for('logout') }}">Sair</a>
     </div>
-    <div class="content">
-        <h1>Mapa atual dos transportes</h1>
-        <h1>Posição do veículo</h1>
+    {% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Register{% endblock %}</h1>
 
-        <label>
-            <input id="manha-checkbox" type="checkbox" name="content" value="manha" style="display: none"
-                onchange="toggleContent('manha')" />
-            <span id="manha-button" class="custom-button {% if selected_content == 'manha' %}selected{% endif %}"
-                onclick="toggleContent('manha')">Manhã</span>
-        </label>
+{% endblock %} {% block content %}
 
-        <label>
-            <input id="tarde-checkbox" type="checkbox" name="content" value="tarde" style="display: none"
-                onchange="toggleContent('tarde')" />
-            <span id="tarde-button" class="custom-button {% if selected_content == 'tarde' %}selected{% endif %}"
-                onclick="toggleContent('tarde')">Tarde</span>
-        </label>
 
-        <label>
-            <input id="noite-checkbox" type="checkbox" name="content" value="noite" style="display: none"
-                onchange="toggleContent('noite')" />
-            <span id="noite-button" class="custom-button {% if selected_content == 'noite' %}selected{% endif %}"
-                onclick="toggleContent('noite')">Noite</span>
-        </label>
+<h1>    <div class="content">
+    <h1>Mapa atual dos transportes</h1>
+    <h1>Posição do veículo</h1>
 
-        <table id="manha" style="display: none;">
-            <thead>
-                <tr>
-                    <th>Rota</th>
-                    <th>Parada</th>
-                </tr>
-            </thead>
-            <tbody>
+    <label>
+        <input id="manha-checkbox" type="checkbox" name="content" value="manha" style="display: none"
+            onchange="toggleContent('manha')" />
+        <span id="manha-button" class="custom-button {% if selected_content == 'manha' %}selected{% endif %}"
+            onclick="toggleContent('manha')">Manhã</span>
+    </label>
 
-                <tr>
-                    <td>{{ rota1[0] }}</td>
-                    <td>{{ rota1[1] }}</td>
+    <label>
+        <input id="tarde-checkbox" type="checkbox" name="content" value="tarde" style="display: none"
+            onchange="toggleContent('tarde')" />
+        <span id="tarde-button" class="custom-button {% if selected_content == 'tarde' %}selected{% endif %}"
+            onclick="toggleContent('tarde')">Tarde</span>
+    </label>
 
-                </tr>
+    <label>
+        <input id="noite-checkbox" type="checkbox" name="content" value="noite" style="display: none"
+            onchange="toggleContent('noite')" />
+        <span id="noite-button" class="custom-button {% if selected_content == 'noite' %}selected{% endif %}"
+            onclick="toggleContent('noite')">Noite</span>
+    </label>
 
-            </tbody>
-        </table>
+    <table id="manha" style="display: none;">
+        <thead>
+            <tr>
+                <th>Rota</th>
+                <th>Parada</th>
+            </tr>
+        </thead>
+        <tbody>
 
-        <table id="tarde" style="display: none;">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Horário</th>
-                    <th>Rota_ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for posicao in posicoes %}
-                {% if posicao_turno(posicao[3]) == 'tarde' %}
-                <tr>
-                    <td>{{ posicao[0] }}</td>
-                    <td>{{ posicao[1] }}</td>
-                    <td>{{ posicao[2] }}</td>
-                    <td>{{ posicao[3] }}</td>
-                    <td>{{ posicao[4] }}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+            <tr>
+                <td>{{ rota1[0] }}</td>
+                <td>{{ rota1[1] }}</td>
 
-        <table id="noite" style="display: none;">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Latitude</th>
-                    <th>Longitude</th>
-                    <th>Horário</th>
-                    <th>Rota_ID</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for posicao in posicoes %}
-                {% if posicao_turno(posicao[3]) == 'noite' %}
-                <tr>
-                    <td>{{ posicao[0] }}</td>
-                    <td>{{ posicao[1] }}</td>
-                    <td>{{ posicao[2] }}</td>
-                    <td>{{ posicao[3] }}</td>
-                    <td>{{ posicao[4] }}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <table id="tarde" style="display: none;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Horário</th>
+                <th>Rota_ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for posicao in posicoes %}
+            {% if posicao_turno(posicao[3]) == 'tarde' %}
+            <tr>
+                <td>{{ posicao[0] }}</td>
+                <td>{{ posicao[1] }}</td>
+                <td>{{ posicao[2] }}</td>
+                <td>{{ posicao[3] }}</td>
+                <td>{{ posicao[4] }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table id="noite" style="display: none;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Horário</th>
+                <th>Rota_ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for posicao in posicoes %}
+            {% if posicao_turno(posicao[3]) == 'noite' %}
+            <tr>
+                <td>{{ posicao[0] }}</td>
+                <td>{{ posicao[1] }}</td>
+                <td>{{ posicao[2] }}</td>
+                <td>{{ posicao[3] }}</td>
+                <td>{{ posicao[4] }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div></h1>
+
+
+{% endblock %}
+
 
     <script>
         function toggleContent(contentId) {
